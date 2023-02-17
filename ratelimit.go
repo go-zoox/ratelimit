@@ -42,7 +42,8 @@ func (r *RateLimit) Total(id string) int64 {
 func (r *RateLimit) Remaining(id string) int64 {
 	count, err := r.Count(id)
 	if err != nil {
-		panic(err)
+		// panic(err)
+		return r.maxCount
 	}
 
 	return r.maxCount - count.Count
@@ -56,6 +57,16 @@ func (r *RateLimit) ResetAfter(id string) int64 {
 	}
 
 	return count.ExpiresAt - time.Now().UnixMilli()
+}
+
+// ResetAt is the time when the rate limit will be reset.
+func (r *RateLimit) ResetAt(id string) int64 {
+	count, err := r.Count(id)
+	if err != nil {
+		panic(err)
+	}
+
+	return count.ExpiresAt
 }
 
 // IsExceeded is the rate limit is exceeded.
