@@ -3,8 +3,8 @@ module github.com/go-zoox/ratelimit
 go 1.18
 
 require (
-	github.com/go-zoox/counter v1.2.0
-	github.com/go-zoox/kv v1.5.0 // indirect
+	github.com/go-zoox/counter v1.2.1
+	github.com/go-zoox/kv v1.5.9 // indirect
 )
 
 require (
